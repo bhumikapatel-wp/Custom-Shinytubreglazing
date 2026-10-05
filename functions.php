@@ -460,3 +460,103 @@ function fetch_our_locations() {
 
     wp_reset_postdata();
 }
+
+
+function fetch_our_work_section() {
+
+    $before_after_section = get_field('before_after_section');
+
+    // Field empty hai to kuch bhi show nahi hoga
+    if (!$before_after_section) {
+        return '';
+    }
+
+    ob_start();
+    ?>
+
+    <section class="our-work-section">
+
+        <div class="theme-container">
+
+            <h2 class="custom-main-text">
+                Our Work Speaks <span>For Itself</span>
+            </h2>
+
+            <div class="our-work-grid">
+
+                <?php for ($i = 1; $i <= 3; $i++) : ?>
+
+                    <div class="before-after-wrapper">
+
+                        <div class="before-after-image">
+
+                            <img
+                                src="<?php echo esc_url(
+                                    get_template_directory_uri() . '/images/service-slider1-after.webp'
+                                ); ?>"
+                                alt="After"
+                            >
+
+                            <span class="before-after-label after-label">
+                                After
+                            </span>
+
+                        </div>
+
+
+                        <div class="before-image" style="width:50%;">
+
+                            <img
+                                src="<?php echo esc_url(
+                                    get_template_directory_uri() . '/images/service-slider1-before.webp'
+                                ); ?>"
+                                alt="Before"
+                            >
+
+                            <span class="before-after-label before-label">
+                                Before
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="before-after-divider"
+                            style="left:50%;"
+                        >
+                            <div class="before-after-handle">
+                                <span>‹</span>
+                                <span>›</span>
+                            </div>
+                        </div>
+
+
+                        <input
+                            type="range"
+                            class="before-after-range"
+                            min="0"
+                            max="100"
+                            value="50"
+                            aria-label="Before and after comparison"
+                        >
+
+                    </div>
+
+                <?php endfor; ?>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <?php
+
+    return ob_get_clean();
+}
+
+
+add_shortcode(
+    'before_after_section',
+    'fetch_our_work_section'
+);

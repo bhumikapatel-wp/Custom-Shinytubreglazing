@@ -1,34 +1,25 @@
-    document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
 
-    const sliders = document.querySelectorAll('.before-after-wrapper');
+    const faqQuestions = document.querySelectorAll('.faq-question');
 
-    sliders.forEach(function (slider) {
+    faqQuestions.forEach(function (question) {
 
-        const range = slider.querySelector('.before-after-range');
-        const beforeImage = slider.querySelector('.before-image');
-        const divider = slider.querySelector('.before-after-divider');
+        question.addEventListener('click', function () {
 
-        if (!range || !beforeImage || !divider) {
-            return;
-        }
+            const currentItem = this.closest('.faq-item');
 
-        function updateSlider() {
+            // Close other FAQs
+            document.querySelectorAll('.faq-item').forEach(function (item) {
+                if (item !== currentItem) {
+                    item.classList.remove('active');
+                }
+            });
 
-            const value = range.value;
+            // Open / close current FAQ
+            currentItem.classList.toggle('active');
 
-            // Before image width
-            beforeImage.style.width = value + '%';
-
-            // Divider position
-            divider.style.left = value + '%';
-        }
-
-        range.addEventListener('input', updateSlider);
-
-        // Initial position
-        updateSlider();
+        });
 
     });
 
 });
-    

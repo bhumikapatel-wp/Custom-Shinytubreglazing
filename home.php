@@ -147,11 +147,15 @@ if ($hero_image) {
             See Why Our Customers <span>Love Us</span>
         </h2>
 
-        <?php
+     <?php
         echo do_shortcode('[trustindex no-registration=google]');
         ?>
 
-    </div>
+
+        </div>
+
+
+
 
 </section>
 
